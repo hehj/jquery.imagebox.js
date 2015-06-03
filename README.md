@@ -5,12 +5,15 @@ A jquery plugin, dependencies fancybox
 
 默认只需要一个可以返回JOSN格式报文的请求地址。
 
+```
 $('#test_div').imagebox({
 			'requestUrl':'http://your-server/your_json_list.json'
 });
+```
 	
 JSON格式默认如下
 
+```
 {
     "rows": [
         {
@@ -40,18 +43,22 @@ JSON格式默认如下
         }
     ]
 }
+```
 
 当然如果你的服务端返回不同的字段，也允许在插件中自定义。
 
+```
 $('#test_div').imagebox({
 			'requestUrl':'http://your-server/your_json_list.json'，
 			'idField' : 'your_id',
 			'urlField' : 'your_url',
 			'descriptionField' : 'your_description'
 });
+```
 
 对应于你的报文如下：
 
+```
 {
     "rows": [
         {
@@ -61,6 +68,7 @@ $('#test_div').imagebox({
         }
     ]
 }
+```
 
 其它自定义的写法查看下代码也不难理解。
 
