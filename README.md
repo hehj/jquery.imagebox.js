@@ -3,6 +3,10 @@ A jquery plugin, dependencies fancybox
 
 项目开发中遇到图库CRUD界面，于是模仿了QQ空间的布局。
 
+![示例图片](https://raw.githubusercontent.com/hehj/jquery.imagebox.js/master/1.png)
+![示例图片](https://raw.githubusercontent.com/hehj/jquery.imagebox.js/master/2.png)
+![示例图片](https://raw.githubusercontent.com/hehj/jquery.imagebox.js/master/3.png)
+
 默认只需要一个可以返回JOSN格式报文的请求地址。
 
 ```
