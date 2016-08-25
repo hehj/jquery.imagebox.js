@@ -1,44 +1,45 @@
-<%@ page language="java" contentType="text/html;charset=utf-8"
-	isELIgnored="false"%>
-<%@include file="include/taglibs.jsp"%>
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
-<head>
-	<%@include file="include/include.jsp"%>
-	<script type="text/javascript" src="${jsPath}/jquery.imagebox.js"></script>
-	<script type="text/javascript" src="${jsPath}/fancybox/jquery.fancybox.js"></script>
-	<link rel="stylesheet" href="${jsPath}/fancybox/jquery.fancybox.css" type="text/css" />
-</head>
+	<head>
+		<title>IT LIEUTENANT - 互联网中尉 - 互联网时代的「电商架构者」</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<!-- <link rel="stylesheet" href="/assets/css/main.css" /> -->
+		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+		<script type="text/javascript" src="script/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="script//fancybox/jquery.fancybox.js"></script>
+		<link rel="stylesheet" href="script/fancybox/jquery.fancybox.css" type="text/css" />
+		<script type="text/javascript" src="script/jquery.imagebox.js"></script>
+		<meta name="baidu-site-verification" content="uQy30E1vqp" />
+		<meta name="keywords" content="Java Linux Html5 电商 微信 智能旅游 ">
+		<meta name="description" content="IT LIEUTENANT - 互联网中尉 - 互联网时代的「电商架构者」 何航杰的个人网站">
+	</head>
 <body>
-	<div style="width:500px">
+	<div style="width:560px">
 		<div id="test_div"></div>
 	</div>
 </body>
 <script type="text/javascript">
-	$('#test_div').imagebox(
+	var rows = $('#test_div').imagebox(
 			{
-				'requestUrl':'http://erp.yjcun.com/yjcun-erp/yjcun_media_list.json',
-				'descriptionField':'tagName',
+				'requestUrl':'http://www.itlieutenant.com/oss',
 				'menuArray' : [
-				               {"key":"设为首页","bindFunction":"imageFirst"},
-				               {"key":"移除","bindFunction":"imageDel"},
-				               {"key":"旋转","bindFunction":"imageChange"}
-				               ]
+				               {"key":"Delete","bindFunction":"imageDel"}
+				      ]
 			}
 	);
 	
-	function imageFirst(id){
-		alert("你设置了第"+id+"张图片为封面");
-		$('#test_div').imagebox('checkAll');
-	}
-	
 	function imageDel(id){
+		var b=confirm("确定要删除？")
+		if(b){
+			
 		alert("你删掉了第"+id+"张图片");
-		$('#test_div').imagebox('reload');
+					
+		}
+		
 	}
 	
-	function imageChange(id){
-		alert("你旋转了第"+id+"张图片");
-	}
 </script>
 </html>

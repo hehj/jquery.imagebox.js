@@ -30,7 +30,7 @@
 					background : '#EFEFEF',
 					borderBottom : '1px dashed #ccc',
 					padding : '8px 8px 8px 8px',
-					width : '140px',
+					width : '160px',
 					height : '140px',
 					float : 'left',
 				};
@@ -42,22 +42,21 @@
 					url : dataOpts.requestUrl,
 					context : document.body,
 					success : function(data, type) {
-						if(""==data||null==data)
+						if(""==data.result||null==data.result)
 							return;
-						var dataObj = eval("(" + data + ")");// 转换为json对象
+						rows = data.result.result;
 						var html = "";
 						$.each(
-							dataObj.rows,
+								rows,
 							function(idx, item) {
-								if (item == undefined
-										|| item[dataOpts.urlField] == undefined)
+								if (item == undefined || item.key== undefined)
 									return;
 								html += '<div class="imagebox">';
 								// a img begin
-								html += '<a rel="images_group" href="';
-								html += item[dataOpts.urlField];
-								html += '" title="'+ item[dataOpts.descriptionField]+ '"> <img alt="" src="';
-								html += item.url;
+								html += '<a rel="images_group" href="http://imgs.itlieutenant.com/';
+								html += item.key;
+								html += '" title="'+ item.key+ '"> <img alt="" src="http://blog-imgs.img-cn-shenzhen.aliyuncs.com/';
+								html += item.key+'@160h_140w_2e';
 								html += '" width="'+ cssOpts.width+ '" height="'+ cssOpts.height+ '" /></a>';
 								// a img end
 								// menu DIV Begin
@@ -68,13 +67,13 @@
 									function(idy,menu) {
 										if (menu == undefined || menu.key == undefined)
 											return;
-										html += '<li><a href="#" onclick="'+ menu.bindFunction+ '('+ item[dataOpts.idField]+ ')">'+ menu.key+ '</a></li>';
+										html += '<li class="absli"><a href="#" onclick="'+ menu.bindFunction+ '('+ (parseInt(idx)+parseInt(1))+ ')">'+ menu.key+ '</a></li>';
 									});
 								html += '</ul></div>';
 								// menu DIV End
 								// checkbox begin
 								html += '<div class="abschk">';
-								html += '<input name="chkItem" type="checkbox" value="'+ item[dataOpts.idField]+ '" />';
+								html += '<input name="chkItem" type="checkbox" value="'+ item.key+ '" />';
 								html += '</div>';
 								// checkbox end
 								html += '</div>';
@@ -96,20 +95,26 @@
 	
 							var $absmenu = $('.absmenu');
 							$absmenu.css("position", "absolute");
-							$absmenu.css("background", '#FFFFFF');
-							$absmenu.css("left", "10px");
-							$absmenu.css("top", "15px");
+							$absmenu.css("background", '#CCCCFF');
+							$absmenu.css("width", "90%");
+							$absmenu.css("left", "9px");
+							$absmenu.css("bottom", "10px");
+							$absmenu.css("filter", "alpha(opacity=45)");
+							$absmenu.css("opacity", "0.45");
 							$absmenu.hide();
 	
 							var $absul = $('.absul');
 							$absul.css("font-size", "5px");
-							$absul.css("margin", "5px 15px 5px 5px");
 							$absul.css("list-style-type", "none");
+							
+							var $absli = $('.absli');
+							$absli.css("margin-bottom", "5px");
+							$absli.css("margin-left", "20px");
 	
 							var $abschk = $('.abschk');
 							$abschk.css("position", "absolute");
 							$abschk.css("left", "10px");
-							$abschk.css("top", "5px");
+							$abschk.css("top", "10px");
 	
 							if (cssOpts.checkbox != 'show') {
 								$imagetoolbar.hide();
@@ -143,6 +148,8 @@
 								$(this).css("background", "#EFEFEF");
 								$(this).find(".absmenu").hide();
 							});
+							
+							return rows;
 						}
 				});
 			},
